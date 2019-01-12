@@ -16,6 +16,7 @@ Plug 'vim-scripts/a.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'rhysd/vim-clang-format'
+Plug 'leafgarland/typescript-vim'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
 
 call plug#end()
@@ -95,7 +96,9 @@ nnoremap <leader>f :Files<cr>
 
 " AsyncRun.
 let g:asyncrun_rootmarks = ['.git']
-" School notes.
-au BufWritePost *.md :AsyncRun -cwd=<root> "./build_notes.sh"
 nnoremap <leader>b :AsyncRun -cwd=<root> make<cr>
 noremap <leader>t :call asyncrun#quickfix_toggle(5)<cr>
+
+" School.
+au BufWritePost *.md :AsyncRun -cwd=<root> make && ~/force_refresh.sh
+au BufWritePost *.tex :AsyncRun -cwd=<root> make && ~/force_refresh.sh
