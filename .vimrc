@@ -18,6 +18,7 @@ Plug 'racer-rust/vim-racer'
 Plug 'rhysd/vim-clang-format'
 Plug 'leafgarland/typescript-vim'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
+" Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -35,8 +36,8 @@ set termguicolors
 let g:lightline={'colorscheme': 'seoul256'}
 
 " Spaces and tabs.
+set smartindent
 set expandtab
-set autoindent
 set backspace=indent,eol,start
 set smarttab
 set shiftwidth=4
@@ -65,7 +66,7 @@ set history=50
 set encoding=utf-8
 set autowrite
 
-set completeopt-=preview
+set completeopt+=preview
 
 " Switch between header and source files.
 map <C-a> :A<CR>
@@ -100,5 +101,10 @@ nnoremap <leader>b :AsyncRun -cwd=<root> make<cr>
 noremap <leader>t :call asyncrun#quickfix_toggle(5)<cr>
 
 " School.
-au BufWritePost *.md :AsyncRun -cwd=<root> make && ~/force_refresh.sh
-au BufWritePost *.tex :AsyncRun -cwd=<root> make && ~/force_refresh.sh
+autocmd BufWritePost *.md :AsyncRun -cwd=<root> make && ~/force_refresh.sh
+autocmd BufWritePost *.tex :AsyncRun -cwd=<root> make
+
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>je :YcmCompleter GoToReferences<CR>
