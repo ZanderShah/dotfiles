@@ -103,6 +103,8 @@ let g:asyncrun_rootmarks = ['.git']
 nnoremap <leader>b :AsyncRun -cwd=<root> make<cr>
 noremap <leader>t :call asyncrun#quickfix_toggle(5)<cr>
 
+" School.
+autocmd BufWritePost *.md :AsyncRun -cwd=<root> make && ~/force_refresh.sh
 autocmd BufWritePost *.tex :AsyncRun -cwd=<root> make
 
 let g:ycm_add_preview_to_completeopt = 1
