@@ -17,6 +17,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'rhysd/vim-clang-format'
 Plug 'leafgarland/typescript-vim'
+Plug 'tikhomirov/vim-glsl'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
 " Plug 'lervag/vimtex'
 
@@ -78,6 +79,8 @@ let g:clang_format#auto_format=1
 let g:racer_cmd = "/Users/ZanderShah/.cargo/bin/racer"
 let g:racer_experimental_completer=1
 
+autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl
+
 let mapleader=" "
 map ; :
 
@@ -106,5 +109,7 @@ autocmd BufWritePost *.tex :AsyncRun -cwd=<root> make
 
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_max_diagnostics_to_display = 0
+
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 nnoremap <leader>je :YcmCompleter GoToReferences<CR>
